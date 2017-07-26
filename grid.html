@@ -1,0 +1,108 @@
+<html>
+<head>
+<link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/assets/js/grid.js" rel="script" type="text" />
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.7.0/lodash.min.js"></script>
+<title>
+</title>
+<body>
+	
+	<div id="sitewide-header" class="c b">this is the sitewide header</div>
+	<div id="hero" class="c i">
+		Fusce semper, ipsum eget posuere vulputate, nisi urna facilisis ex, eu efficitur lacus risus in nisl. Donec efficitur porttitor odio, sit amet imperdiet lacus. Fusce non pulvinar lorem, volutpat ultricies augue. Nulla tincidunt metus vel rhoncus feugiat. Vivamus tincidunt lacus facilisis bibendum pellentesque. Nunc pretium eget est nec vestibulum. Mauris congue metus sagittis, tempor justo laoreet, rutrum odio. Fusce dictum urna id enim rutrum imperdiet sit amet id enim.
+	</div>
+	<div id="swatches"></div>
+	<div id="sitewide-footer" class="c i">this is the sitewide footer</div>
+
+	<script>
+		var imgPath = 'assets/img/';
+
+
+/*
+		var Timeline = new function(events){
+			this.events = events;
+
+		}
+
+		//returns an Array of objects of the form {year:Integer,{events}}
+		Timeline.prototype.getEventsByYear = function(events){
+			var eby = new Array();
+			var year = {};
+			currentYear = new Date().getFullYear();
+			console.log(currentYear);
+			for(i=1981;i<=currentYear;i++){
+				yearString = i.toString();
+				y = _.filter(events, {'year': yearString });
+				if(_.size(y) > 0){
+					year = {'year' : i, 'events' : y }
+					//console.log(year);
+					eby.push(year);
+				}
+			}
+			//console.log(eby);
+			return eby;
+		}
+
+*/
+
+
+
+
+		$(document).ready(function(){
+
+			$.get("/data/events.json", function(data){
+				//timeline = new Timeline(data.events);
+
+
+				years = getEventsByYear(data.events);
+				years = _.orderBy(years,'year','desc');
+
+				for(i in years){
+					events = years[i].events;
+					elemWrapper = $("<div class='swatches-row'>");
+					elem = $("<h1 class='swatches-year'>");
+					elem.html(years[i].year);
+					elemWrapper.html(elem);
+					elemWrapper.appendTo("#swatches");
+					
+					for(ii in events){
+						project = events[ii];
+						elem = $("<div class='swatch'>");
+						name = "<p class='swatch-name'>" + project.name + "</p>";
+						img = "<img class='swatch-img' src='" + imgPath + project.img + "'></img>";
+						desc = "<p class='swatch-desc'>" + project.desc + "</p>";
+						elem.html(name + img + desc);
+						elem.appendTo(elemWrapper);
+					}
+
+				}
+			});
+
+			//returns an Array of objects of the form {year:Integer,{events}}
+			function getEventsByYear(events){
+				var eby = new Array();
+				var year = {};
+				currentYear = new Date().getFullYear();
+				console.log(currentYear);
+				for(i=1981;i<=currentYear;i++){
+					yearString = i.toString();
+					y = _.filter(events, {'year': yearString });
+					if(_.size(y) > 0){
+						year = {'year' : i, 'events' : y }
+						//console.log(year);
+						eby.push(year);
+					}
+				}
+				//console.log(eby);
+				return eby;
+			}
+
+
+
+		});
+	</script>
+</body>
+</html>
+
+

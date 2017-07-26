@@ -1,0 +1,114 @@
+
+
+/********************/
+/* reset */
+/********************/
+ div {
+ 	float: left;
+ 	width: 100%;
+ }
+
+
+
+
+
+
+/********************/
+/* shorthand styles */
+/********************/
+.c {
+	text-align: center;
+}
+
+.b {
+	font-weight: bold;
+}
+
+.i {
+	font-style: italic;
+}
+
+/********************/
+
+#hero {
+	width:80%;
+	padding: 2% 10%;
+}
+
+
+
+
+div {
+	float:left;
+}
+
+p {
+	font-size: 24px;
+}
+
+#swatches {
+	float:left;
+	width: 100%;
+	background: #BBB;
+	padding-bottom: 25px;
+}
+
+
+.swatches-row {
+	float:left;
+	clear:left;
+}
+
+.swatches-year {
+	font-size: 3em;
+	font-style: italic;
+	text-align: center;
+}
+
+.swatch {
+	width: 29.33%;
+	margin: 1%;
+	padding: 1%;
+	float:left;
+	background: white;
+	text-align: center;
+}
+
+.swatch-name {
+	font-size: 1em;
+}
+
+.swatch-img {
+	margin-top: 1em;
+	margin-bottom: 2em;
+	clear:left;
+	width:100%;
+}
+
+.swatch-desc {
+	font-size: .5em;
+	clear:left;
+}
+
+
+
+/* to research - max-width versus max-device-width */
+/* to research - shared stylesheet for media queries versus using links */
+@media only screen and (max-width: 600px) {
+
+	.swatch {
+		width: 46%;
+	}
+
+}
+
+
+
+@media only screen and (max-width: 480px) {
+
+	.swatch {
+		width: 96%;
+	}
+
+}
+
