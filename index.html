@@ -6,7 +6,6 @@
     
 </head>
 <body>
-	<canvas id="canvas1"></canvas>
 	<h1>Words that end in "matt"</h1>
 		<ul>
 			<li>formatt</li>
@@ -20,87 +19,6 @@
 			<li>and many more</li>
 		</ul>
 	</h1>
-
-
-	<script type="text/javascript">
-		var canvas =  document.getElementById("canvas1");
-		var ctx = canvas.getContext("2d");
-
-		var player = new Player();
-		
-		var leftPressed = false;
-		var rightPressed = false;
-
-		/*document.addEventListener("keydown", keyDownHandler, false);
-		document.addEventListener("keyup", keyUpHandler, false);*/
-
-		console.log("hello world");
-
-
-		/*function keyDownHandler(e){
-			console.log("keydown=" + e.keyCode);
-			if(e.keyCode == 39){
-				rightPressed = true;
-			}
-			else if(e.keyCode == 37){
-				leftPressed = true;
-			}
-		}
-
-		function keyUpHandler(e){
-			console.log("keyup=" + e.keyCode);
-			if(e.keyCode == 39){
-				rightPressed = false;
-			}
-			else if(e.keyCode == 37){
-				leftPressed = false;
-			}
-		}*/
-
-		function draw(){
-			ctx.canvas.width = window.innerWidth;
-			ctx.canvas.height = player.height;
-				
-			//ctx.clearRect(0, 0, canvas.width, canvas.height);
-			player.draw();
-			player.move();
-			requestAnimationFrame(draw);
-		}
-
-		draw();
-
-		function Player(){
-			this.x = 0;
-			this.y = 10;
-			this.width = 60;
-			this.height = 80;
-			this.color = "#0095DD";
-			this.image = new Image();
-			this.image.src = "assets/img/mutt.jpg"
-			this.visible = true;
-			this.dX = 5;
-			this.dY = 0;
-			this.move = function(){
-				console.log("player collision detected:" + this.collisionDetect());
-				this.x += this.dX
-				this.y += this.dY;
-			}
-			this.draw = function(){
-				ctx.beginPath();
-				ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-				ctx.closePath;
-			}
-			this.collisionDetect = function(){
-				if(this.x + this.width > canvas.width || this.x < 0){
-					this.dX = -this.dX;
-					return true;
-				}
-				return false;
-			}
-		}
-
-
-	</script>
 
 </body>
 </html>
